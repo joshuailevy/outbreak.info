@@ -11,9 +11,10 @@ jobs:
          - name: process data
            run: |
              echo "starting update"
-             python curated_reports_prep/generate_curated_lineages_json.py
+             cd curated_reports_prep
+             python generate_curated_lineages_json.py
              echo "removing log file"
-             rm curated_reports_prep/curated_lineages_json.log
+             rm curated_lineages_json.log
          - name: commit if output is different 
            run: |
                echo "running git diff, committing if different"
