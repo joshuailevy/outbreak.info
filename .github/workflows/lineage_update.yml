@@ -7,9 +7,13 @@ on:
 jobs:
     scheduled_check:
        runs-on: ubuntu-20.04
+       defaults:
+           run:
+             shell: bash
+             working-directory: scripts
+
        steps:
          - name: process data
-           working-directory: curated_reports_prep
            run: |
              echo "starting update"
              python generate_curated_lineages_json.py
@@ -18,7 +22,7 @@ jobs:
          - name: commit if output is different 
            run: |
                echo "running git diff, committing if different"
-               if [[($(git status web/src/assets/genomics/curated_lineages.json --porcelain | wc -c) -ne 0)]]; then
+               if [[($(git status ../web/src/assets/genomics/curated_lineages.json --porcelain | wc -c) -ne 0)]]; then
                   echo "changes were made, adding new lineage info"
                else
                   echo "no changes were made, doing nothing."
