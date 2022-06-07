@@ -11,7 +11,7 @@ jobs:
          - name: process data
            run: |
              echo "starting update"
-             cd curated_reports_prep
+             working-directory: ./curated_reports_prep/
              python generate_curated_lineages_json.py
              echo "removing log file"
              rm curated_lineages_json.log
