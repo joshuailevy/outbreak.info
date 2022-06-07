@@ -10,11 +10,9 @@ jobs:
        defaults:
            run:
              shell: bash
-             working-directory: scripts
+             working-directory: curated_reports_prep
 
        steps:
-         - name: Checkout
-           uses: actions/checkout@v2
 
          - name: process data
            run: |
