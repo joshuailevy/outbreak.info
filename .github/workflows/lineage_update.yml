@@ -9,9 +9,9 @@ jobs:
        runs-on: ubuntu-20.04
        steps:
          - name: process data
+           working-directory: ./curated_reports_prep
            run: |
              echo "starting update"
-             working-directory: ./curated_reports_prep/
              python generate_curated_lineages_json.py
              echo "removing log file"
              rm curated_lineages_json.log
