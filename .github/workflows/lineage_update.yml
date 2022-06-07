@@ -16,9 +16,9 @@ jobs:
              rm curated_reports_prep/curated_lineages_json.log
          - name: commit if output is different 
            run: |
-           echo "running git diff, committing if different"
-           if [ -z "$(git status ../web/src/assets/genomics/curated_mutations.json --porcelain)" ]; then 
-             echo "no updates"
-           else 
-             echo "updates"
-           fi
+               echo "running git diff, committing if different"
+               if [[($(git status web/src/assets/genomics/curated_lineages.json --porcelain | wc -c) -ne 0)]]; then
+                  echo "changes were made, adding new lineage info"
+               else
+                  echo "no changes were made, doing nothing."
+               fi;
