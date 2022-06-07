@@ -2,13 +2,16 @@ name: Get new lineages from pango
 
 on:
    schedule:
-     - cron: '55 * * * *'
+     - cron: '12 * * * *'
 
 jobs:
     scheduled_check:
        runs-on: ubuntu-20.04
        steps:
          - name: process data
-           run: echo "running python script"
+           run: |
+             echo "starting update"
+             python curated_reports_prep/generate_curated_lineages_json.py
+             rm curated_reports_prep/curated_lineages_json.log
          - name: commit if output is different 
            run: echo "running git diff, committing if different"
