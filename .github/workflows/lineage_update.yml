@@ -1,0 +1,14 @@
+name: Get new lineages from pango
+
+on:
+   schedule:
+     - cron: '30 0,6,12,18 * * *'
+
+jobs:
+    scheduled_check:
+       runs-on: ubuntu-20.04
+       steps:
+         - name: process data
+           run: echo "running python script"
+         - name: commit if output is different 
+           run: echo "running git diff, committing if different"
