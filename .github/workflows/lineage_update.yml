@@ -2,7 +2,7 @@ name: Get new lineages from pango
 
 on:
    schedule:
-     - cron: '30 0,6,12,18 * * *'
+     - cron: '55 * * * *'
 
 jobs:
     scheduled_check:
