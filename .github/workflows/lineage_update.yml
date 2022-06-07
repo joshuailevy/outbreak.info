@@ -31,8 +31,7 @@ jobs:
                   echo "changes were made, adding new lineage info"
                   git add ../web/src/assets/genomics/curated_lineages.json
                   git commit -m "updating lineage metadata"
-                  git config --global user.name 'Josh Levy'
-                  git config --global user.email 'joshua.levy16@gmail.com'
+                  git push origin master
                else
                   echo "no changes were made, doing nothing."
                fi; 
