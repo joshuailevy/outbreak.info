@@ -2,7 +2,7 @@ name: Get new lineages from pango
 
 on:
    schedule:
-     - cron: '15 * * * *'
+     - cron: '*/5 * * * *'
 
 jobs:
     scheduled_check:
@@ -12,6 +12,13 @@ jobs:
            run: |
              echo "starting update"
              python curated_reports_prep/generate_curated_lineages_json.py
+             echo "removing log file"
              rm curated_reports_prep/curated_lineages_json.log
          - name: commit if output is different 
-           run: echo "running git diff, committing if different"
+           run: |
+           echo "running git diff, committing if different"
+           if [ -z "$(git status ../web/src/assets/genomics/curated_mutations.json --porcelain)" ]; then 
+             echo "no updates"
+           else 
+             echo "updates"
+           fi
